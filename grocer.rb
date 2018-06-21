@@ -41,12 +41,13 @@ def checkout(cart, coupons)
   cart = apply_clearance(apply_coupons(new_hash, coupons))
   
   total_value = 0
-  cart.each do |items, value|
+  cart.each do |item, value|
     total_value += value[:price] * value[:count]
   end
-  if total > 100
-    total = total * 0.9
+  
+  if total_value > 100
+    total_value = total_value * 0.9
   end
-  total = total * 0.9 if total > 100
-  total
+  
+  total_value
 end
